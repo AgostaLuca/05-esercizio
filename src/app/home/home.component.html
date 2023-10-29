@@ -2,13 +2,13 @@
     <div class="d-flex justify-content-center mb-2">
         <button
             (click)="chiamataApiTypeDrink('Alcoholic')"
-            class="button-type-drink mx-1"
+            class="button-type-drink mx-1 over-border-orange"
             [class.selezionato]="typeDrink === 'Alcoholic'">
             alcholic
         </button>
         <button
             (click)="chiamataApiTypeDrink('Non_Alcoholic')"
-            class="button-type-drink mx-1"
+            class="button-type-drink mx-1 over-border-orange"
             [class.selezionato]="typeDrink === 'Non_Alcoholic'">
             analcholic
         </button>
@@ -18,7 +18,7 @@
         <div class="row w-75 flex-wrap justify-content-between">
             <button
                 *ngFor="let letter of letters"
-                class="button-lettera"
+                class="button-lettera over-border-orange"
                 [class.selezionato]="letteraSelezionata === letter"
                 (click)="chiamataApi(letter)">
                 {{ letter }}
