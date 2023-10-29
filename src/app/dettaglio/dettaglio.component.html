@@ -1,0 +1,79 @@
+<div class="drinks container flex-wrap pt-10">
+    <div class="row w-100">
+        <div class="col-6">
+            <button class="button-indietro" *ngIf="lang === 'EN'" (click)="tornaIndietro()">Back</button>
+            <button class="button-indietro" *ngIf="lang === 'ES'" (click)="tornaIndietro()">Hacia atrás</button>
+            <button class="button-indietro" *ngIf="lang === 'DE'" (click)="tornaIndietro()">rückwärts</button>
+            <button class="button-indietro" *ngIf="lang === 'IT'" (click)="tornaIndietro()">Indietro</button>
+            <button class="button-indietro" *ngIf="lang === 'FR'" (click)="tornaIndietro()">En arrière</button>
+        </div>
+        <div class="col-6 text-end">
+            <a [class.d-none]="drink.strInstructionsIT === null" (click)="cambiaLingua('IT')"
+                ><img width="50" height="50" src="https://www.thecocktaildb.com//images/icons/flags/shiny/32/it.png"
+            /></a>
+            <a [class.d-none]="drink.strInstructions === null" (click)="cambiaLingua('EN')"
+                ><img width="50" height="50" src="https://www.thecocktaildb.com//images/icons/flags/shiny/32/gb.png"
+            /></a>
+            <a [class.d-none]="drink.strInstructionsDE === null" (click)="cambiaLingua('DE')"
+                ><img width="50" height="50" src="https://www.thecocktaildb.com//images/icons/flags/shiny/32/de.png"
+            /></a>
+            <a [class.d-none]="drink.strInstructionsES === null" (click)="cambiaLingua('ES')"
+                ><img width="50" height="50" src="https://www.thecocktaildb.com//images/icons/flags/shiny/32/es.png"
+            /></a>
+            <a [class.d-none]="drink.strInstructionsFR === null" (click)="cambiaLingua('FR')"
+                ><img width="50" height="50" src="https://www.thecocktaildb.com//images/icons/flags/shiny/32/fr.png"
+            /></a>
+        </div>
+    </div>
+    <div class="row w-100">
+        <div class="col-12 col-lg-5">
+            <p class="text-center fs-1 fw-bold">{{ drink.strDrink }}</p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12 col-lg-5">
+            <picture>
+                <img class="img-fluid" width="600" height="600" [src]="drink.strDrinkThumb" alt="immagine drink" />
+            </picture>
+        </div>
+        <div class="col-12 col-lg-7">
+            <div class="row">
+                <p *ngIf="lang === 'EN'" class="fs-2 fw-bold text-center linee">Ingredients</p>
+                <p *ngIf="lang === 'ES'" class="fs-2 fw-bold text-center linee">Ingredientes</p>
+                <p *ngIf="lang === 'DE'" class="fs-2 fw-bold text-center linee">Zutaten</p>
+                <p *ngIf="lang === 'IT'" class="fs-2 fw-bold text-center linee">Ingredienti</p>
+                <p *ngIf="lang === 'FR'" class="fs-2 fw-bold text-center linee">Ingrédients</p>
+            </div>
+
+            <div class="row">
+                <div class="col-12 col-lg-4" *ngFor="let ingredient of ingredientsMeasurements">
+                    <div class="d-flex flex-wrap justify-content-center" *ngIf="ingredient[0] != null">
+                        <img class="img-fluid" width="100" height="100" [src]="ingredient[2]" [alt]="ingredient[2]" />
+                        <p class="w-100 text-center">{{ ingredient[0] }}: {{ ingredient[1] }}</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row mt-4">
+                <p class="fw-bold text-center fs-2 linee" *ngIf="lang === 'EN'">Instructions</p>
+                <p class="fw-bold text-center fs-2 linee" *ngIf="lang === 'ES'">Instrucciones</p>
+                <p class="fw-bold text-center fs-2 linee" *ngIf="lang === 'DE'">Anweisungen</p>
+                <p class="fw-bold text-center fs-2 linee" *ngIf="lang === 'IT'">Istruzioni</p>
+                <p class="fw-bold text-center fs-2 linee" *ngIf="lang === 'FR'">Instrucciones</p>
+            </div>
+
+            <div class="row mt-4">
+                <p class="px-5 text-center" *ngIf="lang === 'EN'">{{ drink.strInstructions }}</p>
+                <p class="px-5 text-center" *ngIf="lang === 'ES'">{{ drink.strInstructionsES }}</p>
+                <p class="px-5 text-center" *ngIf="lang === 'DE'">{{ drink.strInstructionsDE }}</p>
+                <p class="px-5 text-center" *ngIf="lang === 'IT'">{{ drink.strInstructionsIT }}</p>
+                <p class="px-5 text-center" *ngIf="lang === 'FR'">{{ drink.strInstructionsFR }}</p>
+            </div>
+
+            <div class="row glass">
+                <p class="fw-bold text-center fs-2 linee">Glass</p>
+                <p class="text-center">{{drink.strGlass}}</p>
+            </div>
+        </div>
+    </div>
+</div>

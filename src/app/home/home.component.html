@@ -1,0 +1,51 @@
+<header class="position-fixed z-1 w-100 mt-9rem py-3 bg-black border-bottom-header">
+    <div class="d-flex justify-content-center mb-2">
+        <button
+            (click)="chiamataApiTypeDrink('Alcoholic')"
+            class="button-type-drink mx-1"
+            [class.selezionato]="typeDrink === 'Alcoholic'">
+            alcholic
+        </button>
+        <button
+            (click)="chiamataApiTypeDrink('Non_Alcoholic')"
+            class="button-type-drink mx-1"
+            [class.selezionato]="typeDrink === 'Non_Alcoholic'">
+            analcholic
+        </button>
+        <input (input)="chiamaApiDrinkName(inputDrinkName.value)" #inputDrinkName class="button-type-drink mx-1" [class.selezionato]="drinkName" type="text" value="{{drinkName}}" placeholder="Search by drink name">
+    </div>
+    <div class="container d-flex justify-content-center">
+        <div class="row w-75 flex-wrap justify-content-between">
+            <button
+                *ngFor="let letter of letters"
+                class="button-lettera"
+                [class.selezionato]="letteraSelezionata === letter"
+                (click)="chiamataApi(letter)">
+                {{ letter }}
+            </button>
+        </div>
+    </div>
+</header>
+<div class="drinks">
+    <div class="container h-min pt-16">
+        <div class="row w-100">
+            <div class="col-12 justify-content-center">
+                <p class="pt-10 text-center fs-1" *ngIf="drinks === null">
+                    There aren't drinks with the letter: {{ letteraSelezionata }}
+                </p>
+            </div>
+        </div>
+        <div class="d-flex flex-wrap w-100">
+            <div class="col-12 col-lg-4 p-3" *ngFor="let drink of drinks">
+                <div [routerLink]="['/home/dettaglio', drink.idDrink]" class="shadow-drink drink-animation">
+                    <picture class="">
+                        <img class="img-fluid d-block" src="{{ drink.strDrinkThumb }}" alt="immagine drink" />
+                    </picture>
+                    <div class="overlay">
+                        <div class="text-animation">{{ drink.strDrink }}</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
