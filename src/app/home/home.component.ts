@@ -35,17 +35,25 @@ export class HomeComponent implements OnInit {
         this.apiService.searchByLetter(lettera).subscribe((data) => {
             if (data) this.drinks = data.drinks;
             else this.drinks = [];
-            this.changeDetectorRef.detectChanges();
+            
         });
     }
 
     chiamataApiTypeDrink(typeDrink: string) {
-        this.drinkName = "";
-        this.letteraSelezionata = "";
-        this.ingredientName = "";
         this.typeDrink = typeDrink;
-        this.apiService.searchByTypeDrink(typeDrink).subscribe((response) => {
-            if (response) this.drinks = response.drinks;
+        this.drinkName = "";
+        this.ingredientName = "";
+        this.apiService.searchByLetter(this.letteraSelezionata).subscribe((data) => {
+            if (data) 
+            {
+                let tempDrinks = data.drinks;
+                this.drinks = [];
+                for (let i = 0; i < tempDrinks.length; i++) {
+                    if (tempDrinks[i].strAlcoholic === typeDrink) {
+                        this.drinks.push(tempDrinks[i]);
+                    }
+                }
+            }
             else this.drinks = [];
             this.changeDetectorRef.detectChanges();
         });
@@ -55,9 +63,24 @@ export class HomeComponent implements OnInit {
         this.drinkName = drinkName;
         this.ingredientName = "";
         this.letteraSelezionata = "";
-        this.typeDrink = "";
         this.apiService.searchByDrinkName(drinkName).subscribe((response) => {
-            if (response) this.drinks = response.drinks;
+            if (response) 
+            {
+                let tempDrinks = response.drinks;
+                this.drinks=[];
+                if(this.typeDrink)
+                {
+                    for (let i = 0; i < tempDrinks.length; i++) {
+                        if (tempDrinks[i].strAlcoholic === this.typeDrink) {
+                            this.drinks.push(tempDrinks[i]);
+                        }
+                    }
+                }
+                else
+                {
+                    this.drinks = tempDrinks;
+                }
+            } 
             else this.drinks = [];
             this.changeDetectorRef.detectChanges();
         });

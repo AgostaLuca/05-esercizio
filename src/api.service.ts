@@ -9,7 +9,6 @@ interface Drink{}
 export class ApiService {
     private searchByLetterUrl = "https://www.thecocktaildb.com/api/json/v1/1/search.php?f=";
     private searchByIdUrl = "https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=";
-    private searchByType = "https://www.thecocktaildb.com/api/json/v1/1/filter.php?a=";
     private searchByDrinkNameUrl = "https://www.thecocktaildb.com/api/json/v1/1/search.php?s=";
     private searchByIngredientNameUrl = "https://www.thecocktaildb.com/api/json/v1/1/search.php?i=";
 
@@ -21,10 +20,6 @@ export class ApiService {
 
     searchById(id: string) {
         return this.http.get(this.searchByIdUrl + id) as Observable<allDrinks>;
-    }
-
-    searchByTypeDrink(type: string) {
-        return this.http.get(this.searchByType + type) as Observable<allDrinks>;
     }
 
     searchByDrinkName(drinkName: string) {
