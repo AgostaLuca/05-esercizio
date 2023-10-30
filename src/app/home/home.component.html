@@ -14,8 +14,8 @@
         </button>
         <input (input)="chiamaApiDrinkName(inputDrinkName.value)" #inputDrinkName class="button-type-drink mx-1" [class.selezionato]="drinkName" type="text" value="{{drinkName}}" placeholder="Search by drink name">
     </div>
-    <div class="container d-flex justify-content-center">
-        <div class="row w-75 flex-wrap justify-content-between">
+    <div class="d-flex justify-content-center">
+        <div class="row w-85 flex-wrap justify-content-between">
             <button
                 *ngFor="let letter of letters"
                 class="button-lettera over-border-orange"

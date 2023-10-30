@@ -21,6 +21,9 @@ export class HomeComponent implements OnInit {
         for (let i = 97; i <= 122; i++) {
             this.letters.push(String.fromCharCode(i));
         }
+        for(let i=1; i<10; i++){
+            this.letters.push("" + i);
+        }
         this.chiamataApi("a");
     }
 

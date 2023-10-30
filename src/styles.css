@@ -10,6 +10,10 @@ body {
     background-color: black;
 }
 
+.w-85{
+    width: 90%;
+}
+
 .mt-9rem {
     margin-top: 9rem;
 }
@@ -161,6 +165,10 @@ body {
 
     .glass .linee::after {
         width: 15rem;
+    }
+
+    .w-85{
+        width: 85%;
     }
 }
 /*
