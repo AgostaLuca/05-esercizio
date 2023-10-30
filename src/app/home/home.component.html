@@ -1,6 +1,5 @@
 <header class="position-fixed z-1 w-100 mt-9rem py-3 bg-black border-bottom-header">
     <div class="d-flex justify-content-center mb-2">
-        
         <button
             (click)="chiamataApi(letteraSelezionata)"
             class="button-type-drink mx-1 over-border-orange"
@@ -19,7 +18,14 @@
             [class.selezionato]="typeDrink === 'Non alcoholic'">
             analcholic
         </button>
-        <input (input)="chiamaApiDrinkName(inputDrinkName.value)" #inputDrinkName class="button-type-drink mx-1" [class.selezionato]="drinkName" type="text" value="{{drinkName}}" placeholder="Search by drink name">
+        <input
+            (input)="chiamaApiDrinkName(inputDrinkName.value)"
+            #inputDrinkName
+            class="button-type-drink mx-1"
+            [class.selezionato]="drinkName"
+            type="text"
+            value="{{ drinkName }}"
+            placeholder="Search by drink name" />
     </div>
     <div class="d-flex justify-content-center">
         <div class="row w-85 flex-wrap justify-content-between">
@@ -37,8 +43,10 @@
     <div class="container h-min pt-16">
         <div class="row w-100">
             <div class="col-12 justify-content-center">
-                <p class="pt-10 text-center fs-1" *ngIf="!drinks">
-                    There aren't drinks with the letter: {{ letteraSelezionata }}
+                <p class="pt-10 text-center fs-1" *ngIf="drinks.length === 0">
+                    There aren't drinks that start with the letter {{ letteraSelezionata }}
+                    <span *ngIf="typeDrink">of type {{typeDrink}}</span> 
+                    <span *ngIf="drinkName"> called {{drinkName}} </span> 
                 </p>
             </div>
         </div>

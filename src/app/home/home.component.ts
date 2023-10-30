@@ -33,9 +33,8 @@ export class HomeComponent implements OnInit {
         this.ingredientName = "";
         this.letteraSelezionata = lettera;
         this.apiService.searchByLetter(lettera).subscribe((data) => {
-            if (data) this.drinks = data.drinks;
+            if (data && data.drinks?.length > 0) this.drinks = data.drinks;
             else this.drinks = [];
-            
         });
     }
 
@@ -44,7 +43,7 @@ export class HomeComponent implements OnInit {
         this.drinkName = "";
         this.ingredientName = "";
         this.apiService.searchByLetter(this.letteraSelezionata).subscribe((data) => {
-            if (data) 
+            if (data && data.drinks?.length > 0) 
             {
                 let tempDrinks = data.drinks;
                 this.drinks = [];
@@ -64,7 +63,7 @@ export class HomeComponent implements OnInit {
         this.ingredientName = "";
         this.letteraSelezionata = "";
         this.apiService.searchByDrinkName(drinkName).subscribe((response) => {
-            if (response) 
+            if (response && response.drinks?.length > 0) 
             {
                 let tempDrinks = response.drinks;
                 this.drinks=[];
